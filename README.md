@@ -2,6 +2,7 @@
 
 docker image: https://hub.docker.com/repository/docker/thiethaa/jenkins-ci-build-push-docker-image
 
+1.creTE  Jenkinsfile
 Jenkinsfile
 
           node {
@@ -68,3 +69,4 @@ or
                         }
                     }
 
+2. create repository on docker hub with name ===DOCKER_NAME
