@@ -1,8 +1,8 @@
 pipeline {
   environment {
+    dockerImage = ''
     registry = "thiethaa/jenkins-ci-build-push-docker-image"
     registryCredential = 'dockerHub'
-    dockerImage = ''
   }
   agent any
   stages {
@@ -19,29 +19,12 @@ pipeline {
       }
     }
 
-    stage('Test Mkdocs' ) {
-                agent {
-                docker { image 'thiethaa/jenkins-ci-build-push-docker-image' }
-            }
-            steps {
-                sh 'mkdocs --version'
-            }
-        }
-
-
-    stage('Deploy Image') {
-      steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-          }
-        }
-      }
-    }
-    stage('Remove Unused docker image') {
-      steps{
-        sh "docker rmi $registry:$BUILD_NUMBER"
-      }
-    }
-  }
-}
+//     stage('Deploy Image') {
+//       steps{
+//         script {
+//           docker.withRegistry( '', registryCredential ) {
+//             dockerImage.push()
+//           }
+//         }
+//       }
+//     }
