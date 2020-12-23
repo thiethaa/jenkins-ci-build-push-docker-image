@@ -22,8 +22,8 @@ node {
             echo "login to docker"
             ${docker_home} login
             ${docker_home} build -t jenkins-ci-build-push-docker-image .
-            ${docker_home} tag jenkins-ci-build-push-docker-image thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile
-            ${docker_home} push thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile
+            ${docker_home} tag jenkins-ci-build-push-docker-image thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile.2.0
+            ${docker_home} push thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile.2.0
         """
     }
 }
