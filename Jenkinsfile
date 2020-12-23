@@ -13,10 +13,10 @@ node {
 
    stage('Build image') {
 // specified Docker HOME directory by typing $ which docker on the Command line and specified the path to def docker_home:
-        def docker_home = '/usr/local/bin/docker'
+ //       def docker_home = '/usr/local/bin/docker'
 // or using "tool" pipeline syntax:
-//          def docker_home = ''
-//          docker_home = tool name: 'Docker', type: 'dockerTool'
+         def docker_home = ''
+          docker_home = tool name: 'Docker', type: 'dockerTool'
         sh """
             echo "initializing..."
             echo "login to docker"
