@@ -3,7 +3,7 @@ node {
         git 'https://github.com/thiethaa/jenkins-ci-build-push-docker-image.git'
     }
 
-    stage('maven build docker image') {
+    stage('Maven Build Install') {
         def MAVEN_HOME = ''
 // specified Maven HOME directory by typing $ which mvn on the Command line and specified the path to def MAVEN_HOME
 // or using pipeline syntax "tool" like ex below:
@@ -11,19 +11,19 @@ node {
         sh "${MAVEN_HOME}/bin/mvn clean install"
     }
 
-   stage('Build image') {
+   stage('Build Docker Image') {
 // specified Docker HOME directory by typing $ which docker on the Command line and specified the path to def docker_home:
  //       def docker_home = '/usr/local/bin/docker'
 // or using "tool" pipeline syntax:
-         def docker_home = ''
-          docker_home = tool name: 'Docker', type: 'dockerTool'
+        def DOCKER_HOME = tool name: 'Docker', type: 'dockerTool'
+        def DOCKER_NAME = ${project.artifactId}
+        def DOCKER_VERSION = ${project.version}
         sh """
-            echo "initializing..."
             echo "login to docker"
-            ${docker_home} login
-            ${docker_home} build -t jenkins-ci-build-push-docker-image .
-            ${docker_home} tag jenkins-ci-build-push-docker-image thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile.2.0
-            ${docker_home} push thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile.2.0
+            ${DOCKER_HOME} login
+            ${DOCKER_HOME} build -t jenkins-ci-build-push-docker-image .
+            ${DOCKER_HOME} tag jenkins-ci-build-push-docker-image thiethaa/${DOCKER_NAME}:${DOCKER_VERSION}
+            ${DOCKER_HOME} push thiethaa/${DOCKER_NAME}:${DOCKER_VERSION}
         """
     }
 }
