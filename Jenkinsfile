@@ -5,13 +5,17 @@ node {
 
     stage('maven build docker image') {
         def MAVEN_HOME = ''
+// specified Maven HOME directory by typing $ which mvn on the Command line and specified the path to def MAVEN_HOME
+// or using pipeline syntax "tool" like ex below:
         MAVEN_HOME = tool name: 'Maven', type: 'maven'
         sh "${MAVEN_HOME}/bin/mvn clean install"
     }
 
    stage('Build image') {
-        //withDockerRegistry(credentialsId: 'dockerHub', toolName: 'Docker', url: 'docker.io') {
-        def docker_home = '/usr/local/bin/docker'
+// specified Docker HOME directory by typing $ which docker on the Command line and specified the path to def docker_home:
+//         def docker_home = '/usr/local/bin/docker'
+// or using "tool" pipeline syntax:
+         def docker_home = tool name: 'Docker', type: 'dockerTool'
         sh """
             echo "initializing..."
             echo "login to docker"
@@ -20,7 +24,6 @@ node {
             ${docker_home} tag jenkins-ci-build-push-docker-image thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile
             ${docker_home} push thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile
         """
-        //}
     }
 }
 
