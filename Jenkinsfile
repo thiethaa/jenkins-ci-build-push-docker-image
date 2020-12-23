@@ -20,10 +20,10 @@ node {
         sh """
             echo "initializing..."
             echo "login to docker"
-            ${docker_home}/bin/docker login
-            ${docker_home}/bin/docker build -t jenkins-ci-build-push-docker-image .
-            ${docker_home}/bin/docker tag jenkins-ci-build-push-docker-image thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile
-            ${docker_home}/bin/docker push thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile
+            ${docker_home} login
+            ${docker_home} build -t jenkins-ci-build-push-docker-image .
+            ${docker_home} tag jenkins-ci-build-push-docker-image thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile
+            ${docker_home} push thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile
         """
     }
 }
