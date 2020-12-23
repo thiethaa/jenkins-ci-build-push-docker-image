@@ -10,6 +10,7 @@ node {
     }
 
    stage('Build image') {
+        withDockerRegistry(credentialsId: 'dockerHub', toolName: 'Docker', url: 'docker.io') {
         sh """
             echo "initializing..."
             echo "login to docker"
@@ -18,6 +19,7 @@ node {
             docker tag jenkins-ci-build-push-docker-image thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile
             docker push thiethaa/jenkins-ci-build-push-docker-image:v.jenkinsfile
         """
+        }
     }
 }
 
