@@ -16,8 +16,8 @@ node {
  //       def docker_home = '/usr/local/bin/docker'
 // or using "tool" pipeline syntax:
         def DOCKER_HOME = tool name: 'Docker', type: 'dockerTool'
-        def DOCKER_NAME = ${project.artifactId}
-        def DOCKER_VERSION = ${project.version}
+        def DOCKER_NAME = 'jenkins-ci-build-push-docker-image'
+        def DOCKER_VERSION = 'v.jenkinsfile.5.0'
         sh """
             echo "login to docker"
             ${DOCKER_HOME} login
