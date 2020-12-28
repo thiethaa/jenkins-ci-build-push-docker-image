@@ -17,10 +17,8 @@ node {
 // or using "tool" pipeline syntax:
         def DOCKER_HOME = tool name: 'Docker', type: 'dockerTool'
         def DOCKER_NAME = 'jenkins-ci-build-push-docker-image'
-        def DOCKER_VERSION = 'v.jenkinsfile.6.0'
+        def DOCKER_VERSION = 'v.jenkinsfile.8.0'
         sh """
-            echo "docker logging out "
-            ${DOCKER_HOME} logout
             echo "login to docker"
             ${DOCKER_HOME} login
             ${DOCKER_HOME} build -t jenkins-ci-build-push-docker-image .
@@ -30,3 +28,7 @@ node {
     }
 }
 
+//   if got error : cant login ==> Cannot perform an interactive login from a non TTY device then added this command befor login on line 22
+//  then after than later may get another error : cant reamove credential ===> docker login on the terminal pass the username and password then delete this command from jenkisnfile
+//echo "docker logging out "
+//             ${DOCKER_HOME} logout
