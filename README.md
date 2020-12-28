@@ -38,7 +38,6 @@ Jenkinsfile
 or
 
 
-
                     node {
                         stage('Clone Git Project') {
                             git 'https://github.com/thiethaa/jenkins-ci-build-push-docker-image.git'
@@ -60,6 +59,8 @@ or
                             def DOCKER_NAME = 'jenkins-ci-build-push-docker-image'
                             def DOCKER_VERSION = 'v.jenkinsfile.6.0'
                             sh """
+                                echo "docker logging out "
+                                ${DOCKER_HOME} logout
                                 echo "login to docker"
                                 ${DOCKER_HOME} login
                                 ${DOCKER_HOME} build -t jenkins-ci-build-push-docker-image .
@@ -69,4 +70,11 @@ or
                         }
                     }
 
+
+ERROR: Error: Cannot perform an interactive login from a non TTY device : missing docker logout
+
+
 2. create repository on docker hub with name ===DOCKER_NAME
+
+
+
