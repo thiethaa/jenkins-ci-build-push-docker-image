@@ -73,6 +73,12 @@ or
 
 ERROR: Error: Cannot perform an interactive login from a non TTY device : missing docker logout
 
+if got error : cant login ==> Cannot perform an interactive login from a non TTY device then added this command befor login on line 22
+then after that, later may get another error : cant reamove credential ===> $ docker login on the terminal pass the username and password then delete this command from jenkisnfile
+                    
+                    echo "docker logging out "
+                    ${DOCKER_HOME} logout
+
 
 2. create repository on docker hub with name ===DOCKER_NAME
 
