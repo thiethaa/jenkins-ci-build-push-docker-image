@@ -19,8 +19,6 @@ node {
         def DOCKER_NAME = 'jenkins-ci-build-push-docker-image'
         def DOCKER_VERSION = 'v.jenkinsfile.9.0'
         sh """
-            echo "docker logging out "
-            ${DOCKER_HOME} logout
             echo "login to docker"
             ${DOCKER_HOME} login
             ${DOCKER_HOME} build -t jenkins-ci-build-push-docker-image .
