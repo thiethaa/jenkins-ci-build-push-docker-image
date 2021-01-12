@@ -20,6 +20,7 @@ node {
         def DOCKER_VERSION = 'v.jenkinsfile.10.0'
         sh """
             echo "login to docker"
+            ${DOCKER_HOME} logout
             ${DOCKER_HOME} login
             ${DOCKER_HOME} build -t jenkins-ci-build-push-docker-image .
             ${DOCKER_HOME} tag jenkins-ci-build-push-docker-image thiethaa/${DOCKER_NAME}:${DOCKER_VERSION}
