@@ -1,7 +1,7 @@
 # jenkins-ci-build-push-docker-image
 
 docker image: https://hub.docker.com/repository/docker/thiethaa/jenkins-ci-build-push-docker-image
-
+teamCity : http://localhost:8111/project.html?projectId=JenkinsCiBuildPushDockerImage
 1.creTE  Jenkinsfile
 Jenkinsfile
 
